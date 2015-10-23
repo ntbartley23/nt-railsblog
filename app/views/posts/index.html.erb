@@ -1,5 +1,13 @@
-<% @posts.each do |x| %>
-
-<%=x.content%> 
-
-<% end %> 
+<table border="1">
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+      	<td><%= post.content %></td>
+        <td><a href="/posts/<%= post.id %>">Show</a></td>
+        <td>edit</td>
+        <td>delete</td>
+        <td><%= link_to("Delete Post", post_path(post.id), method: :delete)%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

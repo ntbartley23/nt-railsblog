@@ -44,4 +44,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
+#specify coffee-script 1.8 so windows people can collaborate with mac users
+  gem 'coffee-script-source', '1.8.0'
+ 
