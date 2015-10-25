@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /user
@@ -10,7 +10,10 @@ class UserController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+   @user = User.find(params[:id])
+   @posts = User.find_by(id: params[:id]).posts
   end
+  
 
   # GET /users/new
   def new
@@ -19,6 +22,7 @@ class UserController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])
   end
 
   # POST /users
@@ -40,9 +44,10 @@ class UserController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @user = User.find(params[:id])
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'Sample was successfully updated.' }
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -53,13 +58,25 @@ class UserController < ApplicationController
 
   # DELETE /samples/1
   # DELETE /samples/1.json
-  def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+
+  def destroy   
+   @user = User.find(params[:id])   
+   if @user.destroy     
+     flash[:notice] = "User deleted successfully."   
+     else     
+     flash[:alert] = "There was a problem deleting     
+     the user."   
+      
+     redirect_to :back
+   end
+ end
+  # def destroy ( another way to write it.. scaffolding)
+    # @user.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

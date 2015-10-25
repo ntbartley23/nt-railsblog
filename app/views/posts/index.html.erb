@@ -2,12 +2,20 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
+      	<td><%= post.user.fname%><br><%= post.user.lname %>posted</td>
       	<td><%= post.content %></td>
         <td><a href="/posts/<%= post.id %>">Show</a></td>
         <td>edit</td>
         <td>delete</td>
         <td><%= link_to("Delete Post", post_path(post.id), method: :delete)%></td>
       </tr>
-    <% end %>
+    <br>
+    <%=form_for Comment.new do |f| %>
+    <%= f.text_area :comment_body, :placeholder => "Comment on this post" %>
+    <%= f.hidden_field :post_id, value: post.id %>
+    <%= f.submit :submit %>
+  
+  <% end %>
+<% end %>
   </tbody>
 </table>

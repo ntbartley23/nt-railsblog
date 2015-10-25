@@ -1,4 +1,26 @@
+<p id="notice"><%= notice %></p>
 
 <p>
-  <%= @post.content %>
+  <strong>Fname:</strong>
+  <%= @post.user.fname %>
 </p>
+
+<p>
+  <strong>Lname:</strong>
+  <%= @post.user.lname %>
+</p>
+<p>
+  <strong>Email</strong>
+  <%= @post.user.email %>
+</p>
+
+<p>
+	<strong>Post</strong>
+  <%= @post.content %>	
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>

@@ -14,6 +14,16 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
+<p>
+	<strog>Password:</strog>
+	<%= @user.password %>
+</p>
+<p>
+ <strong>Posts associated with this user:</strong><br><br>
+ <% @posts.each do |post| %>
+ <%= post.content %><br>
 
+ <% end %>
+</p>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
